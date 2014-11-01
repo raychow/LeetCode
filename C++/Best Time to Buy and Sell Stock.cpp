@@ -7,18 +7,12 @@ public:
         {
             return 0;
         }
-        vector<int> profits(prices.size() - 1);
-        for (int i = 0; i != prices.size() - 1; ++i)
-        {
-            profits[i] = prices[i + 1] - prices[i];
-        }
+        int lowest = prices[0];
         int result = 0;
-        int currentProfit = 0;
-        for (int profit : profits)
+        for (int i = 0; i != prices.size(); ++i)
         {
-            currentProfit += profit;
-            result = max(result, currentProfit);
-            currentProfit = max(0, currentProfit);
+            result = max(prices[i] - lowest, result);
+            lowest = min(prices[i], lowest);
         }
         return result;
     }
